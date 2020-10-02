@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+
+.issue-card-body {
+  padding: 0 !important;
+}
+
+.issue-summary-container {  
+  display: flex;
+}
+
+.issue-summary {
+  font-size: 15px;
+}
+.issue-id-container {
+  font-size: 15px;
+}
+img {
+  width: 30%;
+}
+.issue-id {
+  padding: 5px;
+}
+.modal-header {
+  border: none !important;
+}
+.modal-issue-img {
+  width: 10%;
+  padding-right: 3px;
+}
