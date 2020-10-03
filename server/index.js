@@ -5,6 +5,14 @@ const getProjectsRoute = require('./routes/getProjectsRoute');
 const getTicketsRoute = require('./routes/getTicketsRoute');
 const getTicketStatusTypesRoute = require('./routes/getTicketStatusTypesRoute');
 const scheduleIssueUpdate = require('./scheduler/scheduleIssueUpdate');
+const cron = require('node-cron')
+
+//cron job scheduled for every minute to be able to see changes
+//to change to 24 hours instead of a minute use ==> '59 23 * * *' instead
+cron.schedule('* * * * *', function() {
+  console.log('**************** RUNNING ISSUE UPDATE SCHEDULER ********************')
+  scheduleIssueUpdate(request)
+});
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -14,7 +22,6 @@ app.use((req, res, next) => {
 getProjectsRoute(app, request)
 getTicketStatusTypesRoute(app, request)
 getTicketsRoute(app, request)
-scheduleIssueUpdate(request)
 
 const PORT = 5000;
 
