@@ -4,6 +4,7 @@ const request = require('request');
 const getProjectsRoute = require('./routes/getProjectsRoute');
 const getTicketsRoute = require('./routes/getTicketsRoute');
 const getTicketStatusTypesRoute = require('./routes/getTicketStatusTypesRoute');
+const scheduleIssueUpdate = require('./scheduler/scheduleIssueUpdate');
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -13,6 +14,7 @@ app.use((req, res, next) => {
 getProjectsRoute(app, request)
 getTicketStatusTypesRoute(app, request)
 getTicketsRoute(app, request)
+scheduleIssueUpdate(request)
 
 const PORT = 5000;
 
