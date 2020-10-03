@@ -4,21 +4,14 @@ import { KEYS } from '../../config/dev'
 
 export const fetchTicketStatusTypes = (key) => 
     async dispatch => {
-        const res = await axios.get(`${KEYS.JIRA_DOMAIN}${KEYS.GET_JIRA_PROJECTS}/${key}/statuses`, {
-            headers: {
-                'Authorization' : KEYS.API_AUTH_KEY
-            }
-        })
-    dispatch({type: FETCH_TICKET_STATUS_TYPES, payload: res.data[0].statuses})
+        //const res = await axios.get(`${KEYS.PROXY_DOMAIN}${KEYS.GET_TICKET_STATUS_TYPES}/${key}`)
+        const res = await axios.get(`${KEYS.PROXY_DOMAIN}${KEYS.GET_TICKET_STATUS_TYPES}/${key}`)
+        dispatch({type: FETCH_TICKET_STATUS_TYPES, payload: res.data[0].statuses})
         
     }
 
 export const fetchTickets = (key) => 
     async dispatch => {
-        const res = await axios.get(`${KEYS.JIRA_DOMAIN}${KEYS.SEARCH_JIRA_API}?jql=project=${key}`, {
-            headers: {
-                'Authorization' : KEYS.API_AUTH_KEY
-            }
-        })
+        const res = await axios.get(`${KEYS.PROXY_DOMAIN}${KEYS.GET_TICKETS}/${key}`)
         dispatch({type: FETCH_TICKETS, payload: res.data.issues})
     }

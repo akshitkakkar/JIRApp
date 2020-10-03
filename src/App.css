@@ -64,3 +64,6 @@ img {
   width: 10%;
   padding-right: 3px;
 }
+.issue-card-body {
+  padding: 20px 0;
+}

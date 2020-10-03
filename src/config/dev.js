@@ -1,6 +1,6 @@
 export const KEYS = {
-    JIRA_DOMAIN: 'https://localhostapp.atlassian.net',
-    GET_JIRA_PROJECTS: '/rest/api/2/project',
-    API_AUTH_KEY: 'Basic a2Fra2FyLmFrc2hpdEB5YWhvby5jb206RkpvRE9yWXcyRUVSYXVCMElyblM1RUNF',
-    SEARCH_JIRA_API: '/rest/api/2/search'
+    PROXY_DOMAIN: 'http://localhost:5000',
+    GET_JIRA_PROJECTS: '/fetchProjects',
+    GET_TICKET_STATUS_TYPES: '/getTicketStatusTypes',
+    GET_TICKETS: '/getTickets'
 }

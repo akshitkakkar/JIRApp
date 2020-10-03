@@ -36,17 +36,43 @@ const VerticallyCenteredModal = (props) => {
                     <Col md={4}>
                         <div>
                             <span>Assignee</span>
+                            { props.selectedIssue.data.fields.assignee && 
                             <div>
                                 <img className="modal-issue-img" src={props.selectedIssue.data.fields.assignee.avatarUrls["48x48"]}></img>
                                 <span>{props.selectedIssue.data.fields.assignee.displayName}</span>
                             </div>
+                            }
+                            { !props.selectedIssue.data.fields.assignee && 
+                            <div>
+                                <svg width="24" height="24" viewBox="0 0 24 24" focusable="false" role="presentation">
+                                    <g fill="currentColor" fill-rule="evenodd">
+                                        <path d="M6 14c0-1.105.902-2 2.009-2h7.982c1.11 0 2.009.894 2.009 2.006v4.44c0 3.405-12 3.405-12 0V14z"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </g>
+                                </svg>
+                                <span>Unassigned</span>
+                            </div>
+                            }
                         </div>
                         <div>
                             <span>Reporter</span>
+                            { props.selectedIssue.data.fields.reporter &&
                             <div>
                                 <img className="modal-issue-img" src={props.selectedIssue.data.fields.reporter.avatarUrls["48x48"]}></img>
                                 <span>{props.selectedIssue.data.fields.reporter.displayName}</span>
                             </div>
+                            }
+                            { !props.selectedIssue.data.fields.reporter &&
+                            <div>
+                                <svg width="24" height="24" viewBox="0 0 24 24" focusable="false" role="presentation">
+                                    <g fill="currentColor" fill-rule="evenodd">
+                                        <path d="M6 14c0-1.105.902-2 2.009-2h7.982c1.11 0 2.009.894 2.009 2.006v4.44c0 3.405-12 3.405-12 0V14z"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </g>
+                                </svg>
+                                <span>Unassigned</span>
+                            </div>
+                            }
                         </div>
                     </Col>
                 </Row>
