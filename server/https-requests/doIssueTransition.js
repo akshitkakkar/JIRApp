@@ -1,4 +1,4 @@
-const { API_AUTH_KEY } = require("../config/auth/auth");
+const auth = require("../config/auth/auth");
 const { JIRA_DOMAIN, GET_TRANSITION } = require("../config/constants/urls");
 
 module.exports = (request, issueId, transitions, index) => {
@@ -7,7 +7,7 @@ module.exports = (request, issueId, transitions, index) => {
             url: `${JIRA_DOMAIN}${GET_TRANSITION}/${issueId}/transitions`,
             method :"POST",
             headers: {
-                'Authorization' : API_AUTH_KEY
+                'Authorization' : auth()
             },
             body: {
                'transition' : {

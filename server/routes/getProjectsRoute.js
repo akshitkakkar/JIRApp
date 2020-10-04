@@ -1,4 +1,4 @@
-const { API_AUTH_KEY } = require("../config/auth/auth");
+const auth = require("../config/auth/auth");
 const { JIRA_DOMAIN, GET_JIRA_PROJECTS } = require("../config/constants/urls");
 
 module.exports = (app, request) => {
@@ -6,7 +6,7 @@ module.exports = (app, request) => {
     const options = {
         url: `${JIRA_DOMAIN}${GET_JIRA_PROJECTS}?expand=lead`,
         headers: {
-            'Authorization' : API_AUTH_KEY
+            'Authorization' : auth()
         }
     }
 
