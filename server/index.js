@@ -23,8 +23,8 @@ getProjectsRoute(app, request)
 getTicketStatusTypesRoute(app, request)
 getTicketsRoute(app, request)
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log('Proxy Server on PORT 5000')
+    console.log(`Proxy Server on PORT ${PORT}`)
 })
