@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import {KEYS} from '../config/dev'
 import { Link } from 'react-router-dom'
+import { Spinner } from 'react-bootstrap'
 
 
 const Projects = () => {
@@ -49,6 +50,11 @@ const Projects = () => {
                 </tbody> 
                 }
              </table>
+             { !projects.projectCollection &&
+                <div className="center-aligned">
+                    <Spinner animation="border" variant="primary" />
+                </div>
+             }
         </div>
     )
 }

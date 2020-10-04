@@ -12,6 +12,9 @@ module.exports = (app, request) => {
 
     app.get('/fetchProjects', (req, res) => {
         request(options, function(error, response, body) {
+            if(error) {
+                res.send({apiError: true})
+            }
             res.send(body)
         });
     })

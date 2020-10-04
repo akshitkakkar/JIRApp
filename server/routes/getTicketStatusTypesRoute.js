@@ -13,6 +13,9 @@ module.exports = (app, request) => {
         }
 
         request(options, function(error, response, body) {
+            if(error) {
+                res.send({apiError: true})
+            }
             res.send(body)
         });
     })

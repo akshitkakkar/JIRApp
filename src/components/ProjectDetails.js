@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import { CardGroup, Card, Button } from 'react-bootstrap';
+import { CardGroup, Card, Button, Spinner } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import * as actions from '../redux/actions'
 import VerticallyCenteredModal from './VerticallyCenteredModal';
 
-const ProjectDetails = ({match, fetchTicketStatusTypes, fetchTickets, ticketStatusTypes, tickets}) => {
+const ProjectDetails = ({match, fetchTicketStatusTypes, fetchTickets, ticketStatusTypes, tickets, clearTicketStatusTypesOnUnmout, clearTicketsOnUnmount}) => {
 
     const [modalShow, setModalShow] = useState(false)
     const [selectedIssue, setselectedIssue] = useState({data: null})
@@ -13,18 +13,23 @@ const ProjectDetails = ({match, fetchTicketStatusTypes, fetchTickets, ticketStat
     useEffect(() => {
         fetchTicketStatusTypes(match.params.projectKey)
         fetchTickets(match.params.projectKey)
+
+        return () => {
+            clearTicketStatusTypesOnUnmout()
+            clearTicketsOnUnmount()
+        }
     }, [])
 
     const renderIssueBoard = () => {
         return ticketStatusTypes.map((ticketStatus) => {
             return (
-                <Card key={ticketStatus.id}>
+                <Card key={ticketStatus.id} className="card-container">
                     <Card.Title>{ticketStatus.name}</Card.Title>
                     {
                         tickets.map((ticket, index) => {
                             if(ticket.fields.status.id === ticketStatus.id) {
                                 return (
-                                    <Card.Body key={ticket.key} class="issue-card-body">
+                                    <Card.Body key={ticket.key} className="issue-card-body">
                                         <Button variant="light" size="lg" block onClick={() => {
                                             setselectedIssue({...selectedIssue, data: ticket})
                                             setModalShow(true)
@@ -63,11 +68,22 @@ const ProjectDetails = ({match, fetchTicketStatusTypes, fetchTickets, ticketStat
     }
     
     return(
-        <div className="container">
+        <div className="container project-issue-board-background">
+            <Link to="/projects">
+                <Button variant="primary" className="project-issue-board">
+                    Back To Projects
+                </Button>
+            </Link>
             { ticketStatusTypes && tickets &&
             <CardGroup>
                 {renderIssueBoard()}
             </CardGroup>}
+
+            { (!ticketStatusTypes || !tickets) &&
+                <div className="center-aligned">
+                    <Spinner className="spinner" animation="border" variant="primary" />
+                </div>
+            }
 
            { modalShow && <VerticallyCenteredModal selectedIssue={selectedIssue} show={true} onHide={()=> setModalShow(false)}/>}
         </div>

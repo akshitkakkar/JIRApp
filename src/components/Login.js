@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 const Login = () => {
     return(
-        <div>
+        <div className="home-page-button">
             <Link to="/projects">
                 <Button variant="primary">
-                    Go To Projects
+                    Connect To JIRA Project Board
                 </Button>
             </Link>
         </div>

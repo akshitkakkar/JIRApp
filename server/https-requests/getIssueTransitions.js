@@ -11,6 +11,9 @@ module.exports = (request, issueId) => {
         }
 
         request(options, function(error, response, body) {
+            if(error) {
+                reject({apiError: true})
+            }
             resolve(body)
          });
     })
